@@ -23,12 +23,25 @@ jobs:
             npm install
             npm run build
 
-      - name: 部署项目
-        uses: JamesIves/github-pages-deploy-action@v4
+    #   - name: 部署项目
+    #     uses: JamesIves/github-pages-deploy-action@v4
+    #     with:
+    #       branch: gh-pages # 部署到 gh-pages 分支
+    #       folder: dist    # 构建输出目录
+    #       clean: true     # 清理目标分支
+      - name: 创建页面
+        uses: actions/configure-pages@v4
+
+      # 将打包后的 dist 目录上传（Vite 默认是 dist，CRA 是 build）
+      - name: 上传构建包
+        uses: actions/upload-pages-artifact@v3
         with:
-          branch: gh-pages # 部署到 gh-pages 分支
-          folder: dist    # 构建输出目录
-          clean: true     # 清理目标分支
+          path: './dist'
+          branch: 'gh-pages'
+          clean: true
+
+      - name: 部署页面
+        uses: actions/deploy-pages@v4
     
 
       
