@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Run Node Version 
-      run: node -version
+      run: node -eversion
