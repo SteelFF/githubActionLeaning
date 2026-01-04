@@ -1,7 +1,8 @@
 on: push
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
   id-token: write
 
 jobs:
@@ -24,12 +25,6 @@ jobs:
             npm install
             npm run build
 
-    #   - name: 部署项目
-    #     uses: JamesIves/github-pages-deploy-action@v4
-    #     with:
-    #       branch: gh-pages # 部署到 gh-pages 分支
-    #       folder: dist    # 构建输出目录
-    #       clean: true     # 清理目标分支
       - name: 创建页面
         uses: actions/configure-pages@v4
 
