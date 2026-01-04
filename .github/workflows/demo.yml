@@ -1,2 +1,13 @@
-on:
-    flow:
+on: push
+
+jobs:
+ demo-job:
+  runs-on: ubuntu-latest
+  steps:
+  - run: pwd
+  - run: ls
+ job2:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run Node Version 
+      run: node -version
