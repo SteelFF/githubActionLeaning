@@ -1,5 +1,8 @@
 on: push
 
+permissions:
+  contents: write
+
 jobs:
  npm-build:
 
@@ -12,9 +15,20 @@ jobs:
       - name: 列出当前目录文件
         run: ls -la
       - name: 查看 Node.js 和 npm 版本
-        run: npm --version
-      - run: node --version
+        run: |
+            npm --version
+            node --version
       - name: 安装依赖并构建项目
-        run: npm install
-      - run: npm run build
+        run: |
+            npm install
+            npm run build
+
+      - name: 部署项目
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages # 部署到 gh-pages 分支
+          folder: build    # 构建输出目录
+          clean: true     # 清理目标分支
+    
+
       
