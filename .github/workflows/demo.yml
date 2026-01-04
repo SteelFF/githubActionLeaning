@@ -2,12 +2,19 @@ on: push
 
 jobs:
  npm-build:
+
     runs-on: ubuntu-latest
     steps:
-      - run: pwd
-      - run: ls -la
-      - run: npm --version
+      - name: 声明使用插件
+        uses: actions/checkout@v4
+      - name: 查看云路径
+        run: pwd
+      - name: 列出当前目录文件
+        run: ls -la
+      - name: 查看 Node.js 和 npm 版本
+        run: npm --version
       - run: node --version
-      - run: npm install
+      - name: 安装依赖并构建项目
+        run: npm install
       - run: npm run build
       
