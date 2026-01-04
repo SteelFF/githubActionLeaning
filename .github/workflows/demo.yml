@@ -24,6 +24,11 @@ jobs:
         run: |
             npm install
             npm run build
+            cd dist 
+            find . -type f \( -name "*.html" -o -name "*.js" -o -name "*.css" \) -exec sed -i 's|"/assets/|"assets/|g' {} +
+            find . -type f \( -name "*.html" -o -name "*.js" -o -name "*.css" \) -exec sed -i "s|'/assets/|'assets/|g" {} +
+            sed -i 's|href="/|href="./|g' index.html
+            sed -i 's|src="/|src="./|g' index.html
 
       - name: 创建页面
         uses: actions/configure-pages@v4
@@ -33,8 +38,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
-          branch: 'gh-pages'
-          clean: true
 
       - name: 部署页面
         uses: actions/deploy-pages@v4
